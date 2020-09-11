@@ -1,23 +1,22 @@
 <template>
- <div class="app">
+  <div class="app">
     <Header></Header>
     <Content></Content>
     <NavigateBar></NavigateBar>
   </div>
 </template>
-
 <script>
 import Header from './components/template/Header'
 import NavigateBar from './components/template/NavigateBar'
 import Content from './components/template/Content'
 
-export default {
-  name: 'App',
 
- components:{Header,NavigateBar, Content},
-};
+export default {
+  name:'App',
+  components:{Header,NavigateBar, Content}
+}
 </script>
-<style >
+<style>
 *{
   margin: 0;
   box-sizing: border-box;
