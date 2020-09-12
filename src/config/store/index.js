@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import apiCommunication from '../axios'
+import {showError, showSucess} from '../../global'
 
 Vue.use(Vuex)
 
@@ -32,10 +33,11 @@ mutations:{
     searchRecipe(state){
         apiCommunication.get(`search.php?s=${state.inputSearchValue}`)
             .then(res=> {
+                showSucess(res)
                 state.recipeData = res.data
                 console.log(state.recipeData)
             })
-            .catch(err=>console.log(err))
+            .catch(showError)
     },
     changeInputSearchValue(state, value){
         state.inputSearchValue = value
