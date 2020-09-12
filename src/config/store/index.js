@@ -9,7 +9,13 @@ export default new Vuex.Store({
 state:{
     isMenuVisible: true,
     inputSearchValue:'',
-    recipeData: {}
+    recipeData: {},
+    recipesDataFilteredByIngredient: [],
+    recipesDataFilteredByCategory: [],
+    recipesDataFilteredByArea: [],
+    Ingredients:[],
+    Categories:[],
+    Areas:[]
 },
 actions:{
     toggleMenu(context){
@@ -17,6 +23,27 @@ actions:{
     },
     searchRecipe(context){
         context.commit('searchRecipe')
+    },
+    luckRecipe(context){
+        context.commit('luckRecipe')
+    },
+    filterMainIngredient(context){
+        context.commit('filterMainIngredient')
+    },
+    filterByCategory(context){
+        context.commit('filterByCategory')
+    },
+    filterByArea(context){
+        context.commit('filterByArea')
+    },
+    getIngredientList(context){
+        context.commit('getIngredientList')
+    },
+    getCategoryList(context){
+        context.commit('getCategoryList')
+    },
+    getAreaList(context){
+        context.commit('getAreaList')
     },
     changeInputSearchValue(context,value){
         context.commit('changeInputSearchValue', value)
@@ -32,12 +59,75 @@ mutations:{
     },
     searchRecipe(state){
         apiCommunication.get(`search.php?s=${state.inputSearchValue}`)
-            .then(res=> {
-                showSucess(res)
-                state.recipeData = res.data
+            .then(response=> {
+                state.recipeData = {...response.data.meals}
+                showSucess(response)
                 console.log(state.recipeData)
             })
             .catch(showError)
+    },
+    filterMainIngredient(state){
+        apiCommunication.get(`filter.php?i=${state.inputSearchValue}`)
+            .then(response=> {
+                state.recipesDataFilteredByIngredient = response.data.meals
+                showSucess(response)
+                console.log(state.recipesDataFilteredByIngredient)
+            })
+            .catch(showError)
+    },
+    filterByCategory(state){
+        apiCommunication.get(`filter.php?c=${state.inputSearchValue}`)
+        .then(response=> {
+            state.recipesDataFilteredByCategory = response.data.meals
+            showSucess(response)
+            console.log(state.recipesDataFilteredByCategory)
+        })
+        .catch(showError)
+    },
+    filterByArea(state){
+        apiCommunication.get(`filter.php?a=${state.inputSearchValue}`)
+        .then(response=> {
+            state.recipesDataFilteredByArea = response.data.meals
+            showSucess(response)
+            console.log(state.recipesDataFilteredByArea)
+        })
+        .catch(showError)
+    },
+    getIngredientList(state){
+        apiCommunication.get(`list.php?i=list`)
+        .then(response=> {
+            state.Ingredients = response.data.meals
+            showSucess(response)
+            console.log(state.Ingredients)
+        })
+        .catch(showError)
+    },
+    getCategoryList(state){
+        apiCommunication.get(`list.php?c=list`)
+        .then(response=> {
+            state.Categories = response.data.meals
+            showSucess(response)
+            console.log(state.Categories)
+        })
+        .catch(showError)
+    },
+    getAreaList(state){
+        apiCommunication.get(`list.php?a=list`)
+        .then(response=> {
+            state.Areas = response.data.meals
+            showSucess(response)
+            console.log(state.Areas)
+        })
+        .catch(showError)
+    },
+    luckRecipe(state){
+        apiCommunication.get(`random.php`)
+        .then(response=> {
+            state.recipeData = {...response.data.meals}
+            showSucess(response)
+            console.log(state.recipeData)
+        })
+        .catch(showError)
     },
     changeInputSearchValue(state, value){
         state.inputSearchValue = value

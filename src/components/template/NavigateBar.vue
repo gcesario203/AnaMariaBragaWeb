@@ -5,18 +5,52 @@
             <v-icon x-large>mdi-pizza</v-icon>
         </div>
         <div class="navBar__search">
-            <SearchBar></SearchBar>
+            <SearchBar
+                :action="searchRecipe"
+                icon="fas fa-search"
+                placeholder="Pesquise uma receita"
+            >
+            </SearchBar>
+            <SearchBar
+                :action="filterByCategory"
+                icon="fas fa-globe-americas"
+                placeholder="Filtrar por Localidade"
+            >
+            </SearchBar>
+            <SearchBar
+                :action="filterMainIngredient"
+                icon="fas fa-fish"
+                placeholder="Filtrar por Ingredite"
+            >
+            </SearchBar>
+            <SearchBar
+                :action="filterByCategory"
+                icon="fas fa-list"
+                placeholder="Filtrar por Categoria"
+            >
+            </SearchBar>
+            <LuckDay></LuckDay>
         </div>
     </div>
 </template>
 
 <script>
 import SearchBar from '../forms/SearchBar'
-import {mapState} from 'vuex'
+import LuckDay from '../forms/LuckDay'
+
+import {mapState,mapActions} from 'vuex'
 export default {
     name: 'NavigateBar',
     computed: mapState(['isMenuVisible']),
-    components:{SearchBar}
+    components:{SearchBar, LuckDay},
+    methods:{
+        ...mapActions([
+                'searchRecipe',
+                'filterMainIngredient',
+                'filterByCategory',
+                'filterByArea'
+                ])
+    }
 }
 </script>
 

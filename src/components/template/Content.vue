@@ -13,6 +13,9 @@ export default {
 <style>
 .content{
     grid-area: Content;
-    background: white;
+    padding: 5rem 3rem;
+    background: rgb(241, 241, 236);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 </style>

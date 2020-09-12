@@ -1,6 +1,6 @@
 <template>
- <div class="app">
-    <Header :class="{'hide-menu':!isMenuVisible}"></Header>
+ <div :class="{'app':isMenuVisible,'hide-menu':!isMenuVisible}">
+    <Header></Header>
     <Content></Content>
     <NavigateBar></NavigateBar>
   </div>
@@ -38,14 +38,14 @@ export default {
     "Menu Content"
   ;
 }
-.app.hide-menu{
+.hide-menu{
   display: grid;
   height: 100vh;
-  grid-template-columns: 25vw 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 10vh 1fr;
-    grid-template-areas:
-    "Header Header"
-    "Content Content"
+  grid-template-areas:
+    "Header"
+    "Content"
   ;
 }
 

@@ -1,14 +1,14 @@
 <template>
     <div class="searchBar">
         <div class="searchBar__content">
-            <button @click="searchRecipe()">
-                <v-icon>fas fa-search</v-icon>
+            <button @click="action()">
+                <v-icon>{{icon}}</v-icon>
             </button>
             <input
                 type="text"
                 @input="changeInputSearchValue(inputSearch)"
                 v-model="inputSearch"
-                placeholder="Pesquise uma receita"
+                :placeholder="placeholder"
             >
         </div>
     </div>
@@ -19,13 +19,14 @@ import {mapActions} from 'vuex'
 
 export default {
     name: 'SearchBar',
+    props:['action','icon','placeholder'],
     data:()=>{
         return{
             inputSearch:''
         }  
     },
     methods:{
-        ...mapActions(['searchRecipe','changeInputSearchValue'])
+        ...mapActions(['changeInputSearchValue'])
     },
 }
 </script>
@@ -47,12 +48,12 @@ export default {
     width: 30%;
     height: 100%;
     border-radius: 1rem 0 0 1rem;
-    background: rgba(1, 1, 1, 0.35);
-    transition: 800ms;
+    background: rgb(235, 131, 35);
+    outline: none;
 }
 
 .searchBar__content > button:hover{
-    background: rgba(1, 1, 1, 0.25);
+    border: 2px solid black;
 }
 
 .searchBar__content > input{
