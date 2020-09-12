@@ -103,9 +103,9 @@ mutations:{
         .catch(showError)
     },
     getCategoryList(state){
-        apiCommunication.get(`list.php?c=list`)
+        apiCommunication.get(`categories.php`)
         .then(response=> {
-            state.Categories = response.data.meals
+            state.Categories = response.data.categories
             showSucess(response)
             console.log(state.Categories)
         })
