@@ -1,8 +1,12 @@
 <template>
     <div class="recipe">
-        <h1>{{recipeData.strMeal}}</h1>
-        <h2>Fui???
-        </h2>
+            <h1 class="recipe__title">{{recipeData.strMeal}}</h1>
+            <v-img
+                :src="recipeData.strMealThumb"
+                max-height="35vh"
+                max-width="35vw"
+            >
+            </v-img>
     </div>
 </template>
 
@@ -15,5 +19,15 @@ export default {
 </script>
 
 <style>
+.recipe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.recipe__title{
+    font-family: 'Grandstander';
+    font-size: 3rem;
+    margin-bottom: 10vh;
+}
 </style>
