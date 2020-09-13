@@ -10,6 +10,9 @@ export default new Vuex.Store({
 state:{
     isMenuVisible: true,
     inputSearchValue:'',
+    inputFilterIngredient:'',
+    inputFilterArea:'',
+    inputFilterCategory:'',
     recipeData: {},
     recipesDataFilteredByIngredient: [],
     recipesDataFilteredByCategory: [],
@@ -48,6 +51,15 @@ actions:{
     },
     changeInputSearchValue(context,value){
         context.commit('changeInputSearchValue', value)
+    },
+    changeInputFilterIngredientValue(context,value){
+        context.commit('changeInputFilterIngredientValue', value)
+    },
+    changeInputFilterCategoryValue(context,value){
+        context.commit('changeInputFilterCategoryValue', value)
+    },
+    changeInputFilterAreaValue(context,value){
+        context.commit('changeInputFilterAreaValue', value)
     }
 },
 mutations:{
@@ -76,9 +88,9 @@ mutations:{
             .catch(err=>showError(err))
     },
     filterMainIngredient(state){
-        apiCommunication.get(`filter.php?i=${state.inputSearchValue}`)
+        apiCommunication.get(`filter.php?i=${state.inputFilterIngredient}`)
             .then(response=> {
-                if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                if(state.inputFilterIngredient === '' || state.inputFilterIngredient === undefined){
                     showError('Use outros filtros ou tente sua sorte')
                 }else{
                     state.recipesDataFilteredByIngredient = prepareObject(response.data.meals)
@@ -89,9 +101,9 @@ mutations:{
             .catch(err=>showError(err))
     },
     filterByCategory(state){
-        apiCommunication.get(`filter.php?c=${state.inputSearchValue}`)
+        apiCommunication.get(`filter.php?c=${state.inputFilterCategory}`)
         .then(response=> {
-            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+            if(state.inputFilterCategory === '' || state.inputFilterCategory === undefined){
                 showError('Use outros filtros ou tente sua sorte')
             }else{
                 state.recipesDataFilteredByCategory = prepareObject(response.data.meals)
@@ -102,9 +114,9 @@ mutations:{
         .catch(err=>showError(err))
     },
     filterByArea(state){
-        apiCommunication.get(`filter.php?a=${state.inputSearchValue}`)
+        apiCommunication.get(`filter.php?a=${state.inputFilterArea}`)
         .then(response=> {
-            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+            if(state.inputFilterArea === '' || state.inputFilterArea === undefined){
                 showError('Use outros filtros ou tente sua sorte')
             }else{
                 state.recipesDataFilteredByArea = prepareObject(response.data.meals)
@@ -116,12 +128,8 @@ mutations:{
     getIngredientList(state){
         apiCommunication.get(`list.php?i=list`)
         .then(response=> {
-            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
-                showError('Use outros filtros ou tente sua sorte')
-            }else{
                 state.Ingredients = prepareObject(response.data.meals)
                 showSucess('Lista de ingredientes obtida com sucesso')
-            }
             
         })
         .catch(err=>showError(err))
@@ -129,24 +137,16 @@ mutations:{
     getCategoryList(state){
         apiCommunication.get(`categories.php`)
         .then(response=> {
-            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
-                showError('Use outros filtros ou tente sua sorte')
-            }else{
                 state.Categories = prepareObject(response.data.categories)
                 showSucess('Lista de categorias obtida com sucesso')
-            }
         })
         .catch(err=>showError(err))
     },
     getAreaList(state){
         apiCommunication.get(`list.php?a=list`)
         .then(response=> {
-            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
-                showError('Use outros filtros ou tente sua sorte')
-            }else{
                 state.Areas = prepareObject(response.data.meals)
                 showSucess('Lista de localizações obtida com sucesso')
-            }
             
         })
         .catch(err=>showError(err))
@@ -163,6 +163,15 @@ mutations:{
     },
     changeInputSearchValue(state, value){
         state.inputSearchValue = value
-    }
+    },
+    changeInputFilterIngredientValue(state, value){
+        state.inputFilterIngredient = value
+    },
+    changeInputFilterCategoryValue(state, value){
+        state.inputFilterCategory = value
+    },
+    changeInputFilterAreaValue(state, value){
+        state.inputFilterArea = value
+    },
 }
 })

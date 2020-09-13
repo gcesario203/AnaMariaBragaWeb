@@ -6,24 +6,28 @@
         </div>
         <div class="navBar__search">
             <SearchBar
+                :inputAction="changeInputSearchValue"
                 :action="searchRecipe"
                 icon="fas fa-search"
                 placeholder="Pesquise uma receita"
             >
             </SearchBar>
             <SearchBar
+                :inputAction="changeInputFilterAreaValue"
                 :action="filterByArea"
                 icon="fas fa-globe-americas"
                 placeholder="Filtrar por Localidade"
             >
             </SearchBar>
             <SearchBar
+                :inputAction="changeInputFilterIngredientValue"
                 :action="filterMainIngredient"
                 icon="fas fa-fish"
                 placeholder="Filtrar por Ingredite"
             >
             </SearchBar>
             <SearchBar
+                :inputAction="changeInputFilterCategoryValue"
                 :action="filterByCategory"
                 icon="fas fa-list"
                 placeholder="Filtrar por Categoria"
@@ -48,7 +52,11 @@ export default {
                 'searchRecipe',
                 'filterMainIngredient',
                 'filterByCategory',
-                'filterByArea'
+                'filterByArea',
+                'changeInputSearchValue',
+                'changeInputFilterIngredientValue',
+                'changeInputFilterCategoryValue',
+                'changeInputFilterAreaValue'
                 ])
     }
 }

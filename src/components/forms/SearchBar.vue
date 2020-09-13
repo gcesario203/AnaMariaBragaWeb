@@ -6,7 +6,7 @@
             </button>
             <input
                 type="text"
-                @input="changeInputSearchValue(inputSearch)"
+                @input="inputAction(inputSearch)"
                 v-model="inputSearch"
                 :placeholder="placeholder"
             >
@@ -15,19 +15,14 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-
 export default {
     name: 'SearchBar',
-    props:['action','icon','placeholder'],
+    props:['action','icon','placeholder','inputAction'],
     data:()=>{
         return{
             inputSearch:''
         }  
-    },
-    methods:{
-        ...mapActions(['changeInputSearchValue'])
-    },
+    }
 }
 </script>
 
