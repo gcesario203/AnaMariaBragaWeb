@@ -12,7 +12,7 @@
             >
             </SearchBar>
             <SearchBar
-                :action="filterByCategory"
+                :action="filterByArea"
                 icon="fas fa-globe-americas"
                 placeholder="Filtrar por Localidade"
             >

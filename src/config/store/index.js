@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import apiCommunication from '../axios'
-import {showError, showSucess} from '../../global'
+import {showError, showSucess, prepareObject} from '../../global'
+import router from '../router/index'
 
 Vue.use(Vuex)
 
@@ -60,74 +61,105 @@ mutations:{
     searchRecipe(state){
         apiCommunication.get(`search.php?s=${state.inputSearchValue}`)
             .then(response=> {
-                state.recipeData = {...response.data.meals}
-                showSucess(response)
-                console.log(state.recipeData)
+                if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                    showError('Use outros filtros ou tente sua sorte')
+                }else{
+                    state.recipeData = prepareObject(response.data.meals)
+                    showSucess('Receita encontrada com sucesso')
+                }
+                
+
+                if(router.currentRoute.path !== '/recipe-data'){
+                    router.push('/recipe-data')
+                }
             })
-            .catch(showError)
+            .catch(err=>showError(err))
     },
     filterMainIngredient(state){
         apiCommunication.get(`filter.php?i=${state.inputSearchValue}`)
             .then(response=> {
-                state.recipesDataFilteredByIngredient = response.data.meals
-                showSucess(response)
-                console.log(state.recipesDataFilteredByIngredient)
+                if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                    showError('Use outros filtros ou tente sua sorte')
+                }else{
+                    state.recipesDataFilteredByIngredient = prepareObject(response.data.meals)
+                    showSucess('FIltrado com o elemento selecionado com maestria')
+                }
+                
             })
-            .catch(showError)
+            .catch(err=>showError(err))
     },
     filterByCategory(state){
         apiCommunication.get(`filter.php?c=${state.inputSearchValue}`)
         .then(response=> {
-            state.recipesDataFilteredByCategory = response.data.meals
-            showSucess(response)
-            console.log(state.recipesDataFilteredByCategory)
+            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                showError('Use outros filtros ou tente sua sorte')
+            }else{
+                state.recipesDataFilteredByCategory = prepareObject(response.data.meals)
+                showSucess('A categoria se encontra em nossos dados')
+            }
+            
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     filterByArea(state){
         apiCommunication.get(`filter.php?a=${state.inputSearchValue}`)
         .then(response=> {
-            state.recipesDataFilteredByArea = response.data.meals
-            showSucess(response)
-            console.log(state.recipesDataFilteredByArea)
+            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                showError('Use outros filtros ou tente sua sorte')
+            }else{
+                state.recipesDataFilteredByArea = prepareObject(response.data.meals)
+                showSucess(`Viajando para ter receitas ${state.inputSearchValue}`)
+            }
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     getIngredientList(state){
         apiCommunication.get(`list.php?i=list`)
         .then(response=> {
-            state.Ingredients = response.data.meals
-            showSucess(response)
-            console.log(state.Ingredients)
+            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                showError('Use outros filtros ou tente sua sorte')
+            }else{
+                state.Ingredients = prepareObject(response.data.meals)
+                showSucess('Lista de ingredientes obtida com sucesso')
+            }
+            
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     getCategoryList(state){
         apiCommunication.get(`categories.php`)
         .then(response=> {
-            state.Categories = response.data.categories
-            showSucess(response)
-            console.log(state.Categories)
+            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                showError('Use outros filtros ou tente sua sorte')
+            }else{
+                state.Categories = prepareObject(response.data.categories)
+                showSucess('Lista de categorias obtida com sucesso')
+            }
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     getAreaList(state){
         apiCommunication.get(`list.php?a=list`)
         .then(response=> {
-            state.Areas = response.data.meals
-            showSucess(response)
-            console.log(state.Areas)
+            if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
+                showError('Use outros filtros ou tente sua sorte')
+            }else{
+                state.Areas = prepareObject(response.data.meals)
+                showSucess('Lista de localizações obtida com sucesso')
+            }
+            
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     luckRecipe(state){
         apiCommunication.get(`random.php`)
         .then(response=> {
-            state.recipeData = {...response.data.meals}
-            showSucess(response)
+            state.recipeData = prepareObject(response.data.meals)
+            showSucess('Esperamos que nossa roleta russa atenda suas necessidades')
+
             console.log(state.recipeData)
         })
-        .catch(showError)
+        .catch(err=>showError(err))
     },
     changeInputSearchValue(state, value){
         state.inputSearchValue = value
