@@ -1,6 +1,31 @@
 import Vue from 'vue'
 import router from './config/router'
 
+
+export function isNullOrWhitespace( string ) {
+    return !string || !string.trim();
+  }
+
+export function populateIngredientsAndMeasures(arr1,arr2,state){
+    let i = 1
+    let j = 1
+    if(arr1.length > 0 && arr2.length > 0){
+        arr1.length = 0
+        arr2.length = 0
+    }
+
+    for(let lField in state){
+        if(lField === `strIngredient${i}` && !isNullOrWhitespace(state[lField])){
+            arr1.push(state[lField])
+            i++
+        }
+        else if(lField === `strMeasure${j}` && !isNullOrWhitespace(state[lField])){
+            arr2.push(state[lField])
+            j++
+        }
+    }
+}
+
 export function checkRoute(endpoind){
     if(router.currentRoute.path !== endpoind){
         router.push(endpoind)
@@ -42,5 +67,7 @@ export default {
     showError,
     showSucess,
     prepareObject,
-    checkRoute
+    checkRoute,
+    populateIngredientsAndMeasures,
+    isNullOrWhitespace
 }

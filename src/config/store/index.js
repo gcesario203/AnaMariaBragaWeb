@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import apiCommunication from '../axios'
-import {showError, showSucess, prepareObject, checkRoute} from '../../global'
+import {
+    showError,
+    showSucess,
+    prepareObject,
+    checkRoute,
+    populateIngredientsAndMeasures,
+    isNullOrWhitespace
+} from '../../global'
 
 Vue.use(Vuex)
 
@@ -13,6 +20,8 @@ state:{
     inputFilterArea:'',
     inputFilterCategory:'',
     recipeData: {},
+    recipeDataIngredients:[],
+    recipeDataMeasures:[],
     recipesDataFilteredByIngredient: [],
     recipesDataFilteredByCategory: [],
     recipesDataFilteredByArea: [],
@@ -72,8 +81,8 @@ mutations:{
     searchRecipe(state){
         apiCommunication.get(`search.php?s=${state.inputSearchValue}`)
             .then(response=> {
-                if(state.inputSearchValue === '' || state.inputSearchValue === undefined){
-                    showError('Filtro devazio ou tente sua sorte')
+                if(isNullOrWhitespace(state.inputSearchValue)){
+                    showError('Filtro de busca de receitas vazio, tente sua sorte')
                 }else if(response.data.meals.idMeal === null){
                     showError('Nenhuma receita encontrada')
                 }else{
@@ -81,14 +90,21 @@ mutations:{
                     showSucess('Receita encontrada com sucesso')
                     checkRoute('/recipe-data')
                 }
+
+                populateIngredientsAndMeasures(
+                    state.recipeDataIngredients,
+                    state.recipeDataMeasures,
+                    state.recipeData
+                    )
             })
             .catch(err=>showError(err))
     },
+
     filterMainIngredient(state){
         apiCommunication.get(`filter.php?i=${state.inputFilterIngredient}`)
             .then(response=> {
-                if(state.inputFilterIngredient === '' || state.inputFilterIngredient === undefined){
-                    showError('Filtro devazio ou tente sua sorte')
+                if(isNullOrWhitespace(state.inputFilterIngredient)){
+                    showError('Filtro de ingredientes vazio, tente sua sorte')
                 }else if(response.data.meals.idMeal === null){
                     showError('Nenhum ingrediente encontrado')
                 }else{
@@ -101,8 +117,8 @@ mutations:{
     filterByCategory(state){
         apiCommunication.get(`filter.php?c=${state.inputFilterCategory}`)
         .then(response=> {
-            if(state.inputFilterCategory === '' || state.inputFilterCategory === undefined){
-                showError('Filtro devazio ou tente sua sorte')
+            if(isNullOrWhitespace(state.inputFilterCategory)){
+                showError('Filtro de categorias vazio, tente sua sorte')
             }else if(response.data.meals.idMeal === null){
                 showError('Nenhuma categoria encontrada')
             }else{
@@ -116,8 +132,8 @@ mutations:{
     filterByArea(state){
         apiCommunication.get(`filter.php?a=${state.inputFilterArea}`)
         .then(response=> {
-            if(state.inputFilterArea === '' || state.inputFilterArea === undefined){
-                showError('Filtro devazio ou tente sua sorte')
+            if(isNullOrWhitespace(state.inputFilterArea)){
+                showError('Filtro de localizações vazio, tente sua sorte')
             }else if(response.data.meals.idMeal === null){
                 showError('Localização não encontrada')
             }else{
@@ -159,6 +175,15 @@ mutations:{
             state.recipeData = prepareObject(response.data.meals)
             showSucess('Esperamos que nossa roleta russa atenda suas necessidades')
             checkRoute('/recipe-data')
+
+            populateIngredientsAndMeasures(
+                state.recipeDataIngredients,
+                state.recipeDataMeasures,
+                state.recipeData
+                )
+
+            console.log(state.recipeDataIngredients)
+            console.log(state.recipeDataMeasures)
         })
         .catch(err=>showError(err))
     },
