@@ -1,4 +1,11 @@
 import Vue from 'vue'
+import router from './config/router'
+
+export function checkRoute(endpoind){
+    if(router.currentRoute.path !== endpoind){
+        router.push(endpoind)
+    }
+}
 
 export function prepareObject(obj){
     const mock = {...obj}
@@ -31,4 +38,9 @@ export function showSucess(e){
     }
 }
 
-export default {showError,showSucess,prepareObject}
+export default {
+    showError,
+    showSucess,
+    prepareObject,
+    checkRoute
+}

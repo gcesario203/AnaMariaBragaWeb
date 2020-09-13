@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../../components/content/Home'
 import Recipe from '../../components/recipes/Recipe'
-import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -15,7 +14,7 @@ const routes = [
   {
     path: '/recipe-data',
     name:'Recipe',
-    get component(){ return store.state.recipeData.strMeal !== null ? Recipe : Home}
+    component: Recipe
   }
   // {
   //   path: '/about',

@@ -3,6 +3,7 @@
     <v-card
       class="mx-auto"
       max-width="20vw"
+      max-height="32vh"
       @click="action()"
     >
       <v-img
