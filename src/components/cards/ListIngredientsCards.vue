@@ -1,28 +1,38 @@
 <template>
-<v-app class="ingredients">
+  <v-app >
     <v-card
+      :items="Ingredients"
       v-model="page"
-      v-for="x in Ingredients" :key="x.id"
+      class="mx-auto my-10"
+      max-width="50vw"
+      color="grey"
+      outlined
     >
-    <button @click="changeInputFilterIngredientValue(x.strIngredient); filterMainIngredient()">
-      <v-list-item three-line >
-        <v-list-item-content >
-          <div class="overline mb-4"></div>
-                <v-list-item-title class="headline mb-1"> {{ x.strIngredient }}</v-list-item-title>
-                <v-list-item-subtitle>{{ x.strDescription }}</v-list-item-subtitle>
+      <router-link to="/recipe-list">
+      <v-list-item three-line>
+        <v-list-item-content @click="changeInputFilterIngredientValue(Ingredients[page - 1].strIngredient); filterMainIngredient()">
+            <v-list-item-title class="headline mb-1"> {{ Ingredients[page-1].strIngredient }}</v-list-item-title>
+            <v-list-item-subtitle>{{ Ingredients[page - 1].strDescription }}</v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-avatar
-          tile
-          size="80"
-          color="grey"
-          
-        >
-            <v-img :src="x.strImg"></v-img>
+          <v-list-item-avatar
+            size="15vw"
+          >
+          <v-img
+            :src="Ingredients[page-1].strImg"
+          >
+          </v-img>
         </v-list-item-avatar>
       </v-list-item>
-    </button>
+      </router-link>
     </v-card>
+
+    <v-pagination
+        v-model="page"
+        :length="Ingredients.length"
+        :total-visible="10"
+        color="#db8035"
+      ></v-pagination>
   </v-app>
 </template>
 
@@ -46,4 +56,13 @@ export default {
 .v-card{
   margin: 2rem;
 }
+
+.v-card:hover{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+}
+
 </style>

@@ -1,8 +1,8 @@
 <template>
     <router-link :to="route" class="gambiarra">
-        <v-card
+    <v-card
       class="mx-auto"
-      max-width="20vw"
+      max-width="16vw"
       max-height="32vh"
     >
       <v-img
@@ -21,17 +21,15 @@
 <script>
 export default {
     name:'GenericCard',
-    props:['imgUrl','categoryName','action','route'],
-    mounted(){
-      this.action()
-    }
+    props:['imgUrl','categoryName','route']
 }
 </script>
 <style>
 .gambiarra{
-  transition: 200ms;
+  transition: 800ms;
 }
 .gambiarra:hover{
-  border: 1px solid rgb(235, 131, 35);
+  background:  rgb(235, 131, 35);
+  border-radius: 2rem;
 }
 </style>

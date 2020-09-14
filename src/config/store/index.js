@@ -21,11 +21,9 @@ state:{
     inputFilterArea:'',
     inputFilterCategory:'',
     recipeData: {},
+    recipeFiltered: [],
     recipeDataIngredients:[],
     recipeDataMeasures:[],
-    recipesDataFilteredByIngredient: [],
-    recipesDataFilteredByCategory: [],
-    recipesDataFilteredByArea: [],
     Ingredients:[],
     Categories:[],
     Areas:[]
@@ -109,9 +107,9 @@ mutations:{
                 }else if(response.data.meals.idMeal === null){
                     showError('Nenhum ingrediente encontrado')
                 }else{
-                    state.recipesDataFilteredByIngredient = response.data.meals
+                    state.recipeFiltered = response.data.meals
                     showSucess('FIltrado com o elemento selecionado com maestria')
-                    console.log(state.recipesDataFilteredByIngredient)
+                    console.log(state.recipeFiltered)
                 }
             })
             .catch(err=>showError(err))
@@ -124,8 +122,9 @@ mutations:{
             }else if(response.data.meals.idMeal === null){
                 showError('Nenhuma categoria encontrada')
             }else{
-                state.recipesDataFilteredByCategory = response.data.meals
+                state.recipeFiltered = response.data.meals
                 showSucess('A categoria se encontra em nossos dados')
+                checkRoute('/recipe-list')
             }
             
         })
@@ -139,8 +138,9 @@ mutations:{
             }else if(response.data.meals.idMeal === null){
                 showError('Localização não encontrada')
             }else{
-                state.recipesDataFilteredByArea = response.data.meals
+                state.recipeFiltered = response.data.meals
                 showSucess(`Viajando para ter receitas ${state.inputFilterArea}`)
+                checkRoute('/recipe-list')
             }
         })
         .catch(err=>showError(err))
@@ -153,7 +153,6 @@ mutations:{
                 for(let lField in state.Ingredients){
                     state.Ingredients[lField] = {...state.Ingredients[lField],strImg:ingredientImgBuilder(state.Ingredients[lField].strIngredient)}
                 }
-                console.log(state.Ingredients)
             
         })
         .catch(err=>showError(err))
@@ -162,7 +161,6 @@ mutations:{
         apiCommunication.get(`categories.php`)
         .then(response=> {
                 state.Categories = response.data.categories
-                console.log(state.Categories)
         })
         .catch(err=>showError(err))
     },
@@ -170,7 +168,6 @@ mutations:{
         apiCommunication.get(`list.php?a=list`)
         .then(response=> {
                 state.Areas = response.data.meals
-                console.log(state.Areas)
             
         })
         .catch(err=>showError(err))

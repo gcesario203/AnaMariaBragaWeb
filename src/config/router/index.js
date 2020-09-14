@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../../components/content/Home'
 import Recipe from '../../components/recipes/Recipe'
 import ListIngredientsCards from '../../components/cards/ListIngredientsCards'
+import ListRecipes from '../../components/cards/ListRecipes'
+import ListCategory from '../../components/cards/ListCategory'
+import ListArea from '../../components/cards/ListArea'
 import {goodEmptyCheck} from '../../global'
 import store from '../store/index'
 
@@ -18,6 +21,21 @@ const routes = [
     path:'/ingredients',
     name: 'ListIngredientsCards',
     component: ListIngredientsCards
+  },
+  {
+    path:'/categories',
+    name: 'ListCategory',
+    component: ListCategory
+  },
+  {
+    path:'/areas',
+    name: 'ListArea',
+    component: ListArea
+  },
+  {
+    path:'/recipe-list',
+    name:'ListRecipes',
+    component: ListRecipes
   },
   {
     path: '/recipe-data',

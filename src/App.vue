@@ -10,12 +10,23 @@
 import Header from './components/template/Header'
 import NavigateBar from './components/template/NavigateBar'
 import Content from './components/template/Content'
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 
 export default {
   name: 'App',
   computed:mapState(['isMenuVisible']),
-
+  methods:{
+        ...mapActions([
+            'getIngredientList',
+            'getCategoryList',
+            'getAreaList'
+        ])
+    },
+ mounted(){
+   this.getIngredientList(),
+   this.getCategoryList(),
+   this.getAreaList()
+ },
  components:{Header,NavigateBar, Content},
 };
 </script>
