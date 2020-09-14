@@ -1,6 +1,6 @@
 <template>
-  <router-view to="/" class="gambiarra">
-    <v-card
+    <router-link :to="route" class="gambiarra">
+        <v-card
       class="mx-auto"
       max-width="20vw"
       max-height="32vh"
@@ -15,14 +15,13 @@
         <v-card-subtitle class="p-10">{{categoryName}}</v-card-subtitle>
       </v-card-text>
     </v-card>
-  </router-view>
-  
+    </router-link>
 </template>
 
 <script>
 export default {
     name:'GenericCard',
-    props:['imgUrl','categoryName','action'],
+    props:['imgUrl','categoryName','action','route'],
     mounted(){
       this.action()
     }

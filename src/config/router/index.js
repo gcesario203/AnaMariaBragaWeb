@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../../components/content/Home'
 import Recipe from '../../components/recipes/Recipe'
+import ListIngredientsCards from '../../components/cards/ListIngredientsCards'
 import {goodEmptyCheck} from '../../global'
 import store from '../store/index'
 
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path:'/ingredients',
+    name: 'ListIngredientsCards',
+    component: ListIngredientsCards
   },
   {
     path: '/recipe-data',

@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import router from './config/router'
 
+export function ingredientImgBuilder(name){
+    const url ="https://www.themealdb.com/images/ingredients/"
+
+    return `${url}${name}.png`
+}
+
 export function goodEmptyCheck(value) {
     Object.keys(value).length === 0
       && value.constructor === Object;
@@ -74,5 +80,6 @@ export default {
     checkRoute,
     populateIngredientsAndMeasures,
     isNullOrWhitespace,
-    goodEmptyCheck
+    goodEmptyCheck,
+    ingredientImgBuilder
 }

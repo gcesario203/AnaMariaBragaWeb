@@ -147,10 +147,10 @@ export default {
 }
 
 .recipe__prepare > a > button > p{
-    padding-right:1.2rem;
     color: black;
     font-family: 'Lato';
     font-weight: 700;
+    width: 100%;
 }
 
 .recipe__prepare > a > button:hover{

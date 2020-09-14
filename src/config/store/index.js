@@ -7,7 +7,8 @@ import {
     prepareObject,
     checkRoute,
     populateIngredientsAndMeasures,
-    isNullOrWhitespace
+    isNullOrWhitespace,
+    ingredientImgBuilder
 } from '../../global'
 
 Vue.use(Vuex)
@@ -108,8 +109,9 @@ mutations:{
                 }else if(response.data.meals.idMeal === null){
                     showError('Nenhum ingrediente encontrado')
                 }else{
-                    state.recipesDataFilteredByIngredient = prepareObject(response.data.meals)
+                    state.recipesDataFilteredByIngredient = response.data.meals
                     showSucess('FIltrado com o elemento selecionado com maestria')
+                    console.log(state.recipesDataFilteredByIngredient)
                 }
             })
             .catch(err=>showError(err))
@@ -122,7 +124,7 @@ mutations:{
             }else if(response.data.meals.idMeal === null){
                 showError('Nenhuma categoria encontrada')
             }else{
-                state.recipesDataFilteredByCategory = prepareObject(response.data.meals)
+                state.recipesDataFilteredByCategory = response.data.meals
                 showSucess('A categoria se encontra em nossos dados')
             }
             
@@ -137,7 +139,7 @@ mutations:{
             }else if(response.data.meals.idMeal === null){
                 showError('Localização não encontrada')
             }else{
-                state.recipesDataFilteredByArea = prepareObject(response.data.meals)
+                state.recipesDataFilteredByArea = response.data.meals
                 showSucess(`Viajando para ter receitas ${state.inputFilterArea}`)
             }
         })
@@ -147,6 +149,10 @@ mutations:{
         apiCommunication.get(`list.php?i=list`)
         .then(response=> {
                 state.Ingredients = response.data.meals
+
+                for(let lField in state.Ingredients){
+                    state.Ingredients[lField] = {...state.Ingredients[lField],strImg:ingredientImgBuilder(state.Ingredients[lField].strIngredient)}
+                }
                 console.log(state.Ingredients)
             
         })
