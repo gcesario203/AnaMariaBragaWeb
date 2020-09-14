@@ -26,6 +26,31 @@
                 >
                 </List>
             </div>
+            <div class="recipe__prepare">
+                <h3>Modo de preparo</h3>
+                <p>{{recipeData.strInstructions}}</p>
+                <h3 v-if="recipeData.strYoutube || recipeData.strSource">Mais informações</h3>
+                    <a
+                    :href="recipeData.strYoutube"
+                    target="_blank"
+                    v-if="recipeData.strYoutube"
+                    >
+                        <button>
+                            <v-icon x-large>fab fa-youtube</v-icon>
+                            <p>Tutorial no youtube</p>
+                        </button>
+                    </a>
+                    <a
+                        :href="recipeData.strSource"
+                        target="_blank"
+                        v-if="recipeData.strSource"
+                    >
+                        <button>
+                            <v-icon x-large class="icon__uiui">fas fa-mortar-pestle</v-icon>
+                            <p>Fonte da receita</p>
+                        </button>
+                    </a>
+            </div>
     </div>
 </template>
 
@@ -54,8 +79,12 @@ export default {
 
 .recipe__title > h1{
     font-family: 'Grandstander';
+    padding: 1rem;
     font-weight: 700;
     font-size: 3rem;
+    background: rgb(235, 131, 35);
+    border: 3px solid rgb(235, 131, 35);
+    border-radius: 8px;
 }
 
 .recipe__title > h2 {
@@ -75,7 +104,60 @@ export default {
     display: flex;
     width: 100%;
     padding: 2rem 10rem;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
+}
+
+.recipe__prepare{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.recipe__prepare > h3{
+    margin-top: 1rem;
+    font-family: 'Grandstander';
+    color: rgb(94, 93, 93);
+    
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.recipe__prepare > a {
+    display: flex;
+    text-decoration: none;
+}
+
+.recipe__prepare > a > button{
+    margin: 0 19rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: rgb(205, 206, 204);
+    border-radius: 7rem;
+    transition: 800ms;
+    margin-bottom: 2rem;
+}
+
+.recipe__prepare > a > button > i{
+    background: crimson;
+    padding: 1rem;
+    border-radius: 7rem 0 0 7rem;
+}
+
+.recipe__prepare > a > button > p{
+    padding-right:1.2rem;
+    color: black;
+    font-family: 'Lato';
+    font-weight: 700;
+}
+
+.recipe__prepare > a > button:hover{
+    background: rgb(139, 139, 139);
+}
+
+.recipe__prepare > a > button > i.icon__uiui{
+    background:rgb(235, 131, 35) ;
 }
 </style>

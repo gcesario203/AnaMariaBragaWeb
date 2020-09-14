@@ -1,10 +1,9 @@
 <template>
-  <button class="gambiarra">
+  <router-view to="/" class="gambiarra">
     <v-card
       class="mx-auto"
       max-width="20vw"
       max-height="32vh"
-      @click="action()"
     >
       <v-img
         class="white--text align-end"
@@ -16,14 +15,17 @@
         <v-card-subtitle class="p-10">{{categoryName}}</v-card-subtitle>
       </v-card-text>
     </v-card>
-  </button>
+  </router-view>
   
 </template>
 
 <script>
 export default {
     name:'GenericCard',
-    props:['imgUrl','categoryName','action']
+    props:['imgUrl','categoryName','action'],
+    mounted(){
+      this.action()
+    }
 }
 </script>
 <style>

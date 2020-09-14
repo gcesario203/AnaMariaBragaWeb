@@ -146,8 +146,8 @@ mutations:{
     getIngredientList(state){
         apiCommunication.get(`list.php?i=list`)
         .then(response=> {
-                state.Ingredients = prepareObject(response.data.meals)
-                showSucess('Lista de ingredientes obtida com sucesso')
+                state.Ingredients = response.data.meals
+                console.log(state.Ingredients)
             
         })
         .catch(err=>showError(err))
@@ -155,16 +155,16 @@ mutations:{
     getCategoryList(state){
         apiCommunication.get(`categories.php`)
         .then(response=> {
-                state.Categories = prepareObject(response.data.categories)
-                showSucess('Lista de categorias obtida com sucesso')
+                state.Categories = response.data.categories
+                console.log(state.Categories)
         })
         .catch(err=>showError(err))
     },
     getAreaList(state){
         apiCommunication.get(`list.php?a=list`)
         .then(response=> {
-                state.Areas = prepareObject(response.data.meals)
-                showSucess('Lista de localizações obtida com sucesso')
+                state.Areas = response.data.meals
+                console.log(state.Areas)
             
         })
         .catch(err=>showError(err))
@@ -181,9 +181,6 @@ mutations:{
                 state.recipeDataMeasures,
                 state.recipeData
                 )
-
-            console.log(state.recipeDataIngredients)
-            console.log(state.recipeDataMeasures)
         })
         .catch(err=>showError(err))
     },

@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import router from './config/router'
 
+export function goodEmptyCheck(value) {
+    Object.keys(value).length === 0
+      && value.constructor === Object;
+  }
 
 export function isNullOrWhitespace( string ) {
     return !string || !string.trim();
@@ -69,5 +73,6 @@ export default {
     prepareObject,
     checkRoute,
     populateIngredientsAndMeasures,
-    isNullOrWhitespace
+    isNullOrWhitespace,
+    goodEmptyCheck
 }
