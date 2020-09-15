@@ -79,6 +79,7 @@ export default {
 
 .recipe__title{
     display: flex;
+    padding: 0 3rem;
     flex-direction: column;
     align-items: center;
 }
