@@ -8,7 +8,6 @@
       color="grey"
       outlined
     >
-      <router-link to="/recipe-list">
       <v-list-item three-line>
         <v-list-item-content @click="changeInputFilterIngredientValue(Ingredients[page - 1].strIngredient); filterMainIngredient()">
             <v-list-item-title class="headline mb-1"> {{ Ingredients[page-1].strIngredient }}</v-list-item-title>
@@ -24,7 +23,6 @@
           </v-img>
         </v-list-item-avatar>
       </v-list-item>
-      </router-link>
     </v-card>
 
     <v-pagination
