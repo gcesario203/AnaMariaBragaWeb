@@ -22,7 +22,7 @@ export default {
             'getAreaList'
         ])
     },
- mounted(){
+ created(){
    this.getIngredientList(),
    this.getCategoryList(),
    this.getAreaList()
