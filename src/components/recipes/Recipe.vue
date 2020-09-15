@@ -108,8 +108,8 @@ export default {
 
 .recipe__content{
     display: flex;
+    flex-direction: row;
     width: 100%;
-    padding: 2rem 10rem;
     align-items: baseline;
     justify-content: center;
 }
@@ -135,7 +135,6 @@ export default {
 }
 
 .recipe__prepare > a > button{
-    margin: 0 19rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -166,4 +165,15 @@ export default {
 .recipe__prepare > a > button > i.icon__uiui{
     background:rgb(235, 131, 35) ;
 }
+
+@media (max-width: 700px) {
+    .recipe__content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: baseline;
+    justify-content: center;
+}
+}
+
 </style>

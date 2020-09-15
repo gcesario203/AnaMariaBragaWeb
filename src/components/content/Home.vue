@@ -3,7 +3,7 @@
        <div class="home__title">
             <h1>Welcome, Select one of the listings below</h1>
        </div>
-       <div :class="{'home__cards':isMenuVisible, 'home__cards__large':!isMenuVisible}">
+       <div class="home__cards">
            <CardOption
             categoryName="Remote locations that share their secrets"
             imgUrl="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
@@ -45,6 +45,7 @@ export default {
 }
 
 .home__title > h1{
+    margin-top: 2rem;
     width: 100%;
     text-align: center;
     font-family: 'Grandstander';
@@ -52,21 +53,9 @@ export default {
 }
 
 .home__cards{
-    margin: 5rem 0;
-    padding: 0 -3rem;
     display: flex;
     width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.home__cards__large{
-    margin: 5rem 0;
-    padding: 0 5rem;
-    display: flex;
-    width: 100%;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }

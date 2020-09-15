@@ -13,7 +13,6 @@
                     :src="recipe.strMealThumb"
                     max-width="80vw"
                     max-height="30vh"
-                    v-model="page"
                 ></v-img>
                 
             </div>
@@ -33,12 +32,7 @@ export default {
     methods:{
         ...mapActions(['searchRecipe','changeInputSearchValue'])
     },
-    components:{NoContent},
-    data:()=>{
-        return{
-            page:1
-        }
-    }
+    components:{NoContent}
 }
 </script>
 
@@ -58,7 +52,7 @@ export default {
 
 .recipes__list{
     margin: 2rem 0 1rem 0;
-    padding: 3rem;
+    padding: 3rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;

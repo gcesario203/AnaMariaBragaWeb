@@ -12,7 +12,7 @@
         >
             <v-icon x-large>mdi-arrow-right</v-icon>
         </a>
-        <router-link to='/'><h1>ANB Recipes</h1></router-link>
+        <router-link to='/'><h1>AMB Recipes</h1></router-link>
     </div>
 </template>
 
@@ -52,7 +52,6 @@ export default {
     font-family: 'Grandstander';
     text-align: center;
     color: black;
-    margin: 2rem 31rem;
-    padding: 0 0.53rem;
+    align-self: center;
 }
 </style>

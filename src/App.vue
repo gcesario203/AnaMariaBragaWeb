@@ -60,4 +60,29 @@ export default {
   ;
 }
 
+@media (max-width: 700px){
+  .app{
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10vh 1fr 1fr;
+    grid-template-areas:
+    "Header"
+    "Menu"
+    "Content"
+  ;  
+  }
+
+  .hide-menu{
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10vh 1fr;
+  grid-template-areas:
+    "Header"
+    "Content"
+  ;
+}
+}
+
 </style>

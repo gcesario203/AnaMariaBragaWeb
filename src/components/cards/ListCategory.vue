@@ -45,7 +45,7 @@ export default {
 
 .category__list{
     margin: 2rem 0 1rem 0;
-    padding: 3rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;

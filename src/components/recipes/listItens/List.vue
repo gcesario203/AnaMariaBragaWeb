@@ -19,15 +19,44 @@ export default {
 }
 
 .list__member{
-    border: 1px solid black;
     list-style: none;
-    padding: 1rem;
+    display: flex;
+    padding: 2rem;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .list__name{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 1rem;
+    align-items: center;
+    padding: 2rem;
+    background: rgb(235, 131, 35);
+    border: solid 1px black;
+}
+
+@media(max-width: 700px){
+    .list__member{
+    list-style: none;
+    display: flex;
+    padding: 0.5rem;
     border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list__name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgb(235, 131, 35);
+    border: solid 1px black;
+}
 }
 </style>
