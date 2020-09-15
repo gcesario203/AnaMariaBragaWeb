@@ -4,24 +4,27 @@
       :items="Ingredients"
       v-model="page"
       class="mx-auto my-10"
-      max-width="50vw"
+      max-width="80rem"
+      max-height="30rem"
+      height="28rem"
+      width="20rem"
       color="grey"
+      hover
+      align-center
       outlined
     >
-      <v-list-item three-line>
+      <v-list-item>
         <v-list-item-content @click="changeInputFilterIngredientValue(Ingredients[page - 1].strIngredient); filterMainIngredient()">
-            <v-list-item-title class="headline mb-1"> {{ Ingredients[page-1].strIngredient }}</v-list-item-title>
-            <v-list-item-subtitle>{{ Ingredients[page - 1].strDescription }}</v-list-item-subtitle>
-        </v-list-item-content>
+            <v-list-item-title class="headline text-center mb-6"> {{ Ingredients[page-1].strIngredient }}</v-list-item-title>
 
-          <v-list-item-avatar
-            size="15vw"
-          >
           <v-img
+            height="20rem"
+            align-center
             :src="Ingredients[page-1].strImg"
           >
           </v-img>
-        </v-list-item-avatar>
+          
+        </v-list-item-content>
       </v-list-item>
     </v-card>
 
@@ -53,6 +56,10 @@ export default {
 <style>
 .v-card{
   margin: 2rem;
+}
+
+.wrap-text{
+  overflow: hidden !important;
 }
 
 .v-card:hover{
