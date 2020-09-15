@@ -1,5 +1,6 @@
 <template>
-    <div class="recipe">
+    <div>
+        <div class="recipe" v-if="Object.keys(recipeData).length !== 0">
             <div class="recipe__title">
                 <h1>{{recipeData.strMeal}}</h1>
                 <h2>{{recipeData.strTags}}</h2>
@@ -45,22 +46,27 @@
                         target="_blank"
                         v-if="recipeData.strSource"
                     >
-                        <button>
-                            <v-icon x-large class="icon__uiui">fas fa-mortar-pestle</v-icon>
-                            <p>Fonte da receita</p>
-                        </button>
-                    </a>
+                    <button>
+                        <v-icon x-large class="icon__uiui">fas fa-mortar-pestle</v-icon>
+                        <p>Fonte da receita</p>
+                    </button>
+                </a>
             </div>
+        </div>
+        <div v-else>
+            <NoContent></NoContent>
+        </div>
     </div>
 </template>
 
 <script>
 import List from './listItens/List'
+import NoContent from '../error/NoContent'
 import {mapState} from 'vuex'
 export default {
     name:'Recipe',
     computed:mapState(['recipeData','recipeDataIngredients','recipeDataMeasures']),
-    components:{List},
+    components:{List,NoContent},
 }
 </script>
 
@@ -115,7 +121,7 @@ export default {
 }
 
 .recipe__prepare > h3{
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-family: 'Grandstander';
     color: rgb(94, 93, 93);
     

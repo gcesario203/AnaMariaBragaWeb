@@ -1,12 +1,13 @@
 <template>
-   <div class="recipes__filtered">
-       <h1>Receitas encontradas</h1>
-       <div
-            class="recipes__list"
-            v-for="recipe in recipeFiltered"
-            :key="recipe.id"
-            @click="changeInputSearchValue(recipe.strMeal); searchRecipe()"
-        >
+    <div>
+        <div class="recipes__filtered" v-if="Object.keys(recipeFiltered).length !== 0">
+            <h1>Receitas encontradas</h1>
+            <div
+                class="recipes__list"
+                v-for="recipe in recipeFiltered"
+                :key="recipe.id"
+                @click="changeInputSearchValue(recipe.strMeal); searchRecipe()"
+            >
                 <h3>{{recipe.strMeal}}</h3>
                 <v-img
                     :src="recipe.strMealThumb"
@@ -15,18 +16,24 @@
                     v-model="page"
                 ></v-img>
                 
-       </div>
-   </div>
+            </div>
+        </div>
+        <div v-else>
+            <NoContent></NoContent>
+        </div>
+    </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
+import NoContent from '../error/NoContent'
 export default {
     name:'ListRecipes',
     computed:mapState(['recipeFiltered']),
     methods:{
         ...mapActions(['searchRecipe','changeInputSearchValue'])
     },
+    components:{NoContent},
     data:()=>{
         return{
             page:1
