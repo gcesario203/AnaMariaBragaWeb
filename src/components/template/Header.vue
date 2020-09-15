@@ -12,7 +12,7 @@
         >
             <v-icon x-large>mdi-arrow-right</v-icon>
         </a>
-        <h1>ANB Recipes</h1>
+        <router-link to='/'><h1>ANB Recipes</h1></router-link>
     </div>
 </template>
 
@@ -48,9 +48,11 @@ export default {
     background: rgba(1, 1, 1, 0.15);
 }
 
-.header > h1{
+.header > a > h1{
     font-family: 'Grandstander';
     text-align: center;
-    width: 100%;
+    color: black;
+    margin: 2rem 31rem;
+    padding: 0 0.53rem;
 }
 </style>
