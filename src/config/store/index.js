@@ -109,7 +109,7 @@ mutations:{
                 }else{
                     state.recipeFiltered = response.data.meals
                     showSucess('Ingredient successfully filtered')
-                    console.log(state.recipeFiltered)
+                    checkRoute('/recipe-list')
                 }
             })
             .catch(err=>showError(err))
