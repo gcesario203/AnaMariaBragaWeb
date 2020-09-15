@@ -5,8 +5,8 @@
       v-model="page"
       class="mx-auto my-10"
       max-width="80rem"
-      max-height="30rem"
-      height="28rem"
+      max-height="29rem"
+      height="27rem"
       width="20rem"
       color="grey"
       hover
