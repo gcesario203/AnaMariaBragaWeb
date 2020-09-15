@@ -1,6 +1,6 @@
 <template>
    <div class="category__filtered">
-       <h1>Receitas encontradas</h1>
+       <h1>Categories found</h1>
        <div
             class="category__list"
             v-for="category in Categories"

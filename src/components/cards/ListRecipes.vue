@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="recipes__filtered" v-if="Object.keys(recipeFiltered).length !== 0">
-            <h1>Receitas encontradas</h1>
+            <h1>Recipes found</h1>
             <div
                 class="recipes__list"
                 v-for="recipe in recipeFiltered"

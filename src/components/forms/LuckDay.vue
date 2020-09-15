@@ -3,7 +3,7 @@
         <div class="luckDay__content">
             <button @click="luckRecipe()">
                 <v-icon>far fa-lightbulb</v-icon>
-                <p>Estou com sorte!</p>
+                <p>I'm lucky!</p>
             </button>
         </div>
     </div>
@@ -54,6 +54,9 @@ export default {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    margin-left: 2rem;
 }
 
 </style>

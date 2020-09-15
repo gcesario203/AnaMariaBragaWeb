@@ -13,24 +13,24 @@
             >
             </v-img>
             <div class="recipe__itens">
-                <h3>Ingredientes e medidas</h3>
+                <h3>Ingredients and measures</h3>
             </div>
             <div class="recipe__content">
                 <List
                     :itensIngredients="recipeDataIngredients"
-                    name="Ingredientes"
+                    name="Ingredients"
                 >
                 </List>
                 <List
                     :itensIngredients="recipeDataMeasures"
-                    name="Medidas"
+                    name="Measures"
                 >
                 </List>
             </div>
             <div class="recipe__prepare">
-                <h3>Modo de preparo</h3>
+                <h3>Preparation mode</h3>
                 <p>{{recipeData.strInstructions}}</p>
-                <h3 v-if="recipeData.strYoutube || recipeData.strSource">Mais informações</h3>
+                <h3 v-if="recipeData.strYoutube || recipeData.strSource">More info</h3>
                     <a
                     :href="recipeData.strYoutube"
                     target="_blank"
@@ -38,7 +38,7 @@
                     >
                         <button>
                             <v-icon x-large>fab fa-youtube</v-icon>
-                            <p>Tutorial no youtube</p>
+                            <p>Tutorial youtube</p>
                         </button>
                     </a>
                     <a
@@ -48,7 +48,7 @@
                     >
                     <button>
                         <v-icon x-large class="icon__uiui">fas fa-mortar-pestle</v-icon>
-                        <p>Fonte da receita</p>
+                        <p>Recipe source</p>
                     </button>
                 </a>
             </div>

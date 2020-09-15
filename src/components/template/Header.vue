@@ -12,7 +12,7 @@
         >
             <v-icon x-large>mdi-arrow-right</v-icon>
         </a>
-        <h1>Projeto Ana Maria Braga</h1>
+        <h1>ANB Recipes</h1>
     </div>
 </template>
 

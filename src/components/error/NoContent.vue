@@ -1,9 +1,9 @@
 <template>
     <div class="noContent">
-        <h1>Nenhum item encontrado ou selecionado, tente novamente com os filtros do menu</h1>
+        <h1>No items found or selected, try again with the menu filters</h1>
         <router-link to="/" class="noContent__button__container">
             <v-icon x-large>fas fa-home</v-icon>
-            <h3>Voltar para o inicio</h3>
+            <h3>Back to home</h3>
         </router-link>
     </div>
 </template>

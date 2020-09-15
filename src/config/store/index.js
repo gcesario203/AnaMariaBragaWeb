@@ -81,12 +81,12 @@ mutations:{
         apiCommunication.get(`search.php?s=${state.inputSearchValue}`)
             .then(response=> {
                 if(isNullOrWhitespace(state.inputSearchValue)){
-                    showError('Filtro de busca de receitas vazio, tente sua sorte')
+                    showError('Empty recipe search filter, try your luck')
                 }else if(response.data.meals.idMeal === null){
-                    showError('Nenhuma receita encontrada')
+                    showError('No recipes found')
                 }else{
                     state.recipeData = prepareObject(response.data.meals)
-                    showSucess('Receita encontrada com sucesso')
+                    showSucess('Recipe found successfully')
                     checkRoute('/recipe-data')
                 }
 
@@ -103,12 +103,12 @@ mutations:{
         apiCommunication.get(`filter.php?i=${state.inputFilterIngredient}`)
             .then(response=> {
                 if(isNullOrWhitespace(state.inputFilterIngredient)){
-                    showError('Filtro de ingredientes vazio, tente sua sorte')
+                    showError('Empty ingredient search filter, try your luck')
                 }else if(response.data.meals.idMeal === null){
-                    showError('Nenhum ingrediente encontrado')
+                    showError('No ingredients found')
                 }else{
                     state.recipeFiltered = response.data.meals
-                    showSucess('FIltrado com o elemento selecionado com maestria')
+                    showSucess('Ingredient successfully filtered')
                     console.log(state.recipeFiltered)
                 }
             })
@@ -118,12 +118,12 @@ mutations:{
         apiCommunication.get(`filter.php?c=${state.inputFilterCategory}`)
         .then(response=> {
             if(isNullOrWhitespace(state.inputFilterCategory)){
-                showError('Filtro de categorias vazio, tente sua sorte')
+                showError('Empty category search filter, try your luck')
             }else if(response.data.meals.idMeal === null){
-                showError('Nenhuma categoria encontrada')
+                showError('No categories found')
             }else{
                 state.recipeFiltered = response.data.meals
-                showSucess('A categoria se encontra em nossos dados')
+                showSucess('The category is in our data')
                 checkRoute('/recipe-list')
             }
             
@@ -134,12 +134,12 @@ mutations:{
         apiCommunication.get(`filter.php?a=${state.inputFilterArea}`)
         .then(response=> {
             if(isNullOrWhitespace(state.inputFilterArea)){
-                showError('Filtro de localizações vazio, tente sua sorte')
+                showError('Empty area search filter, try your luck')
             }else if(response.data.meals.idMeal === null){
-                showError('Localização não encontrada')
+                showError('No areas found')
             }else{
                 state.recipeFiltered = response.data.meals
-                showSucess(`Viajando para ter receitas ${state.inputFilterArea}`)
+                showSucess(`Traveling for ${state.inputFilterArea} recipes`)
                 checkRoute('/recipe-list')
             }
         })
@@ -176,7 +176,7 @@ mutations:{
         apiCommunication.get(`random.php`)
         .then(response=> {
             state.recipeData = prepareObject(response.data.meals)
-            showSucess('Esperamos que nossa roleta russa atenda suas necessidades')
+            showSucess('We hope that our Russian roulette meets your needs')
             checkRoute('/recipe-data')
 
             populateIngredientsAndMeasures(
